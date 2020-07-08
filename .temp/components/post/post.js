@@ -10,7 +10,7 @@ export default class Post extends Taro.Component {
         </View>
         <View className="at-col at-col-8 at-col--wrap">
           <Text className="at-article__p">
-            o文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试
+            文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试
           </Text>
         </View>
       </View>;
