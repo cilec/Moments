@@ -21,6 +21,8 @@ export default class Index extends Taro.Component {
   render() {
     return <View>
         <Post />
+        <Post></Post>
+        <Post></Post>
       </View>;
   }
 }
