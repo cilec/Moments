@@ -1,6 +1,6 @@
 Component({
   properties: {
-    // dianzan | xinxi-1
+    // icon_shichangjianguanju | dianzan | xinxi-1
     name: {
       type: String,
     },

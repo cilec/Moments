@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro';
-import Index from './pages/index';
-import dva from './dva';
-import './app.scss';
-import { Provider } from '@tarojs/redux';
-import models from './models';
-import 'taro-ui/dist/style/index.scss'
+import Taro, { Component } from "@tarojs/taro";
+import Index from "./pages/index";
+import dva from "./dva";
+import "./app.scss";
+import { Provider } from "@tarojs/redux";
+import models from "./models";
+import "taro-ui/dist/style/index.scss";
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5') {
@@ -15,7 +15,7 @@ const dvaApp = dva.createApp({
   initialState: {},
   models: models,
   onError(e) {
-    console.log('出错了', e);
+    console.log("出错了", e);
   },
 });
 const store = dvaApp.getStore();
@@ -30,12 +30,12 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ['pages/index/index'],
+    pages: ["pages/login/login", "pages/index/index"],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black',
+      backgroundTextStyle: "light",
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTitleText: "WeChat",
+      navigationBarTextStyle: "black",
     },
   };
 
@@ -50,4 +50,4 @@ class App extends Component {
   }
 }
 
-Taro.render(<App />, document.getElementById('app'));
+Taro.render(<App />, document.getElementById("app"));

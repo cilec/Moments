@@ -1,10 +1,10 @@
 import Taro, { Component } from "@tarojs/taro-h5";
 
-import dva from './dva';
-import './app.scss';
+import dva from "./dva";
+import "./app.scss";
 import { Provider } from "@tarojs/redux-h5";
 import models from "./models/index";
-import 'taro-ui/dist/style/index.scss';
+import "taro-ui/dist/style/index.scss";
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5') {
@@ -26,7 +26,7 @@ const _taroHistory = createHistory({
   mode: "hash",
   basename: "/",
   customRoutes: {},
-  firstPagePath: "/pages/index/index"
+  firstPagePath: "/pages/login/login"
 });
 
 mountApis({
@@ -37,7 +37,7 @@ const dvaApp = dva.createApp({
   initialState: {},
   models: models,
   onError(e) {
-    console.log('出错了', e);
+    console.log("出错了", e);
   }
 });
 const store = dvaApp.getStore();
@@ -54,12 +54,12 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ["/pages/index/index"],
+    pages: ["/pages/login/login", "/pages/index/index"],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      backgroundTextStyle: "light",
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTitleText: "WeChat",
+      navigationBarTextStyle: "black"
     }
   };
 
@@ -69,9 +69,13 @@ class App extends Component {
     return <Provider store={store}>
           
                 <Router mode={"hash"} history={_taroHistory} routes={[{
+        path: '/pages/login/login',
+        componentLoader: () => import( /* webpackChunkName: "login_login" */'./pages/login/login'),
+        isIndex: true
+      }, {
         path: '/pages/index/index',
         componentLoader: () => import( /* webpackChunkName: "index_index" */'./pages/index/index'),
-        isIndex: true
+        isIndex: false
       }]} customRoutes={{}} />
                 
         </Provider>;
@@ -88,4 +92,4 @@ class App extends Component {
 
 }
 
-Nerv.render(<App />, document.getElementById('app'));
+Nerv.render(<App />, document.getElementById("app"));
