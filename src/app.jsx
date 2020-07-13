@@ -30,11 +30,11 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ["pages/login/login", "pages/index/index"],
+    pages: [ "pages/user/user","pages/login/login", "pages/index/index"],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "WeChat",
+      navigationBarTitleText: "YLMSA",
       navigationBarTextStyle: "black",
     },
   };

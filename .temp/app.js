@@ -26,7 +26,7 @@ const _taroHistory = createHistory({
   mode: "hash",
   basename: "/",
   customRoutes: {},
-  firstPagePath: "/pages/login/login"
+  firstPagePath: "/pages/user/user"
 });
 
 mountApis({
@@ -54,11 +54,11 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ["/pages/login/login", "/pages/index/index"],
+    pages: ["/pages/user/user", "/pages/login/login", "/pages/index/index"],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "WeChat",
+      navigationBarTitleText: "YLMSA",
       navigationBarTextStyle: "black"
     }
   };
@@ -69,9 +69,13 @@ class App extends Component {
     return <Provider store={store}>
           
                 <Router mode={"hash"} history={_taroHistory} routes={[{
+        path: '/pages/user/user',
+        componentLoader: () => import( /* webpackChunkName: "user_user" */'./pages/user/user'),
+        isIndex: true
+      }, {
         path: '/pages/login/login',
         componentLoader: () => import( /* webpackChunkName: "login_login" */'./pages/login/login'),
-        isIndex: true
+        isIndex: false
       }, {
         path: '/pages/index/index',
         componentLoader: () => import( /* webpackChunkName: "index_index" */'./pages/index/index'),
