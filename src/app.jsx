@@ -30,7 +30,27 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: [ "pages/user/user","pages/login/login", "pages/index/index"],
+    pages: ["pages/index/index", "pages/user/user", "pages/login/login"],
+    tabBar: {
+      backgroundColor: "#fafafa",
+      borderStyle: "white",
+      selectedColor: "#1296db",
+      color: "#666",
+      list: [
+        {
+          pagePath: "pages/index/index",
+          iconPath: "./assets/images/dongtai.png",
+          selectedIconPath: "./assets/images/dongtai@selected.png",
+          text: "全局动态",
+        },
+        {
+          pagePath: "pages/user/user",
+          iconPath: "./assets/images/wode.png",
+          selectedIconPath: "./assets/images/wode@selected.png",
+          text: "我",
+        },
+      ],
+    },
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",

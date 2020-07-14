@@ -12,6 +12,7 @@ import "taro-ui/dist/style/index.scss";
 // }
 
 import Nerv from 'nervjs';
+import { View, Tabbar, TabbarContainer, TabbarPanel } from '@tarojs/components';
 import { Router, createHistory, mountApis } from '@tarojs/router';
 Taro.initPxTransform({
   "designWidth": 750,
@@ -26,7 +27,7 @@ const _taroHistory = createHistory({
   mode: "hash",
   basename: "/",
   customRoutes: {},
-  firstPagePath: "/pages/user/user"
+  firstPagePath: "/pages/index/index"
 });
 
 mountApis({
@@ -43,6 +44,29 @@ const dvaApp = dva.createApp({
 const store = dvaApp.getStore();
 
 class App extends Component {
+  state = {
+    __tabs: {
+      backgroundColor: "#fafafa",
+      borderStyle: "white",
+      selectedColor: "#1296db",
+      color: "#666",
+      list: [{
+        pagePath: "/pages/index/index",
+        iconPath: require("././assets/images/dongtai.png"),
+        selectedIconPath: require("././assets/images/dongtai@selected.png"),
+        text: "全局动态"
+      }, {
+        pagePath: "/pages/user/user",
+        iconPath: require("././assets/images/wode.png"),
+        selectedIconPath: require("././assets/images/wode@selected.png"),
+        text: "我"
+      }],
+      mode: "hash",
+      basename: "/",
+      customRoutes: {}
+    }
+  };
+
   componentDidMount() {
     this.componentDidShow();
   }
@@ -54,7 +78,11 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ["/pages/user/user", "/pages/login/login", "/pages/index/index"],
+    pages: ["/pages/index/index", "/pages/user/user", "/pages/login/login"],
+    tabBar: { backgroundColor: "#fafafa", borderStyle: "white", selectedColor: "#1296db", color: "#666", list: [{ pagePath: "/pages/index/index", iconPath: require("././assets/images/dongtai.png"), selectedIconPath: require("././assets/images/dongtai@selected.png"), text: "全局动态" }, { pagePath: "/pages/user/user", iconPath: require("././assets/images/wode.png"), selectedIconPath: require("././assets/images/wode@selected.png"), text: "我" }], mode: "hash",
+      basename: "/",
+      customRoutes: {}
+    },
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
@@ -68,20 +96,27 @@ class App extends Component {
   render() {
     return <Provider store={store}>
           
+        <TabbarContainer>
+          
+        <TabbarPanel>
+          
                 <Router mode={"hash"} history={_taroHistory} routes={[{
-        path: '/pages/user/user',
-        componentLoader: () => import( /* webpackChunkName: "user_user" */'./pages/user/user'),
-        isIndex: true
-      }, {
-        path: '/pages/login/login',
-        componentLoader: () => import( /* webpackChunkName: "login_login" */'./pages/login/login'),
-        isIndex: false
-      }, {
-        path: '/pages/index/index',
-        componentLoader: () => import( /* webpackChunkName: "index_index" */'./pages/index/index'),
-        isIndex: false
-      }]} customRoutes={{}} />
+            path: '/pages/index/index',
+            componentLoader: () => import( /* webpackChunkName: "index_index" */'./pages/index/index'),
+            isIndex: true
+          }, {
+            path: '/pages/user/user',
+            componentLoader: () => import( /* webpackChunkName: "user_user" */'./pages/user/user'),
+            isIndex: false
+          }, {
+            path: '/pages/login/login',
+            componentLoader: () => import( /* webpackChunkName: "login_login" */'./pages/login/login'),
+            isIndex: false
+          }]} tabBar={this.state.__tabs} customRoutes={{}} />
                 
+        </TabbarPanel>
+        <Tabbar conf={this.state.__tabs} homePage="pages/index/index" />
+        </TabbarContainer>
         </Provider>;
   }
 
@@ -92,6 +127,10 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     Taro._$app = this;
+  }
+
+  componentWillMount() {
+    Taro.initTabBarApis(this, Taro);
   }
 
 }
