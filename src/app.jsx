@@ -30,7 +30,12 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ["pages/index/index", "pages/user/user", "pages/login/login"],
+    pages: [
+      "pages/index/index",
+      "pages/user/user",
+      "pages/login/login",
+      "pages/createPost/createPost",
+    ],
     tabBar: {
       backgroundColor: "#fafafa",
       borderStyle: "white",
@@ -42,6 +47,12 @@ class App extends Component {
           iconPath: "./assets/images/dongtai.png",
           selectedIconPath: "./assets/images/dongtai@selected.png",
           text: "全局动态",
+        },
+        {
+          pagePath: "pages/createPost/createPost",
+          iconPath: "./assets/images/xinzeng.png",
+          selectedIconPath: "./assets/images/xinzeng@seleted.png",
+          text: "发布动态",
         },
         {
           pagePath: "pages/user/user",

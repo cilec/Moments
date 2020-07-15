@@ -56,6 +56,11 @@ class App extends Component {
         selectedIconPath: require("././assets/images/dongtai@selected.png"),
         text: "全局动态"
       }, {
+        pagePath: "/pages/createPost/createPost",
+        iconPath: require("././assets/images/xinzeng.png"),
+        selectedIconPath: require("././assets/images/xinzeng@seleted.png"),
+        text: "发布动态"
+      }, {
         pagePath: "/pages/user/user",
         iconPath: require("././assets/images/wode.png"),
         selectedIconPath: require("././assets/images/wode@selected.png"),
@@ -78,8 +83,8 @@ class App extends Component {
   componentDidCatchError() {}
 
   config = {
-    pages: ["/pages/index/index", "/pages/user/user", "/pages/login/login"],
-    tabBar: { backgroundColor: "#fafafa", borderStyle: "white", selectedColor: "#1296db", color: "#666", list: [{ pagePath: "/pages/index/index", iconPath: require("././assets/images/dongtai.png"), selectedIconPath: require("././assets/images/dongtai@selected.png"), text: "全局动态" }, { pagePath: "/pages/user/user", iconPath: require("././assets/images/wode.png"), selectedIconPath: require("././assets/images/wode@selected.png"), text: "我" }], mode: "hash",
+    pages: ["/pages/index/index", "/pages/user/user", "/pages/login/login", "/pages/createPost/createPost"],
+    tabBar: { backgroundColor: "#fafafa", borderStyle: "white", selectedColor: "#1296db", color: "#666", list: [{ pagePath: "/pages/index/index", iconPath: require("././assets/images/dongtai.png"), selectedIconPath: require("././assets/images/dongtai@selected.png"), text: "全局动态" }, { pagePath: "/pages/createPost/createPost", iconPath: require("././assets/images/xinzeng.png"), selectedIconPath: require("././assets/images/xinzeng@seleted.png"), text: "发布动态" }, { pagePath: "/pages/user/user", iconPath: require("././assets/images/wode.png"), selectedIconPath: require("././assets/images/wode@selected.png"), text: "我" }], mode: "hash",
       basename: "/",
       customRoutes: {}
     },
@@ -111,6 +116,10 @@ class App extends Component {
           }, {
             path: '/pages/login/login',
             componentLoader: () => import( /* webpackChunkName: "login_login" */'./pages/login/login'),
+            isIndex: false
+          }, {
+            path: '/pages/createPost/createPost',
+            componentLoader: () => import( /* webpackChunkName: "createPost_createPost" */'./pages/createPost/createPost'),
             isIndex: false
           }]} tabBar={this.state.__tabs} customRoutes={{}} />
                 
