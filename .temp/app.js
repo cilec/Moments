@@ -1,4 +1,5 @@
 import Taro, { Component } from "@tarojs/taro-h5";
+import '@tarojs/async-await';
 
 import dva from "./dva";
 import "./app.scss";

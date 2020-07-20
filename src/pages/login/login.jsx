@@ -14,13 +14,22 @@ export default class Index extends Component {
       second: 60,
     };
   }
-  onSubmit(event) {
-    console.log(event);
+  async accountLogin() {
+    // console.log(event);
+    const { phone, vcode } = this.state;
+    if (phone.length < 1 || vcode.length < 1) {
+      Taro.showModal({
+        title: "错误信息",
+        content: "请输入手机号和验证码",
+        showCancel: false,
+      });
+      return false;
+    }
   }
   handleInput(value, event) {
     console.log(value, event);
-    let { name } = event.target;
-    this.setState({ [name]: value });
+
+    this.setState({ [e.target.name]: value });
   }
   showTipText() {
     return this.state.disabled ? `${this.state.second}s后重试` : "发送验证码";
@@ -49,7 +58,10 @@ export default class Index extends Component {
     return (
       <View className="at-row at-row__justify--center at-row__align--center container">
         <View className="at-col">
-          <View className="at-row at-row__justify--center" style={{marginBottom:'50px'}}>
+          <View
+            className="at-row at-row__justify--center"
+            style={{ marginBottom: "50px" }}
+          >
             <IconFont
               className="at-col"
               name="icon_shichangjianguanju"
@@ -58,7 +70,7 @@ export default class Index extends Component {
             ></IconFont>
           </View>
           <View className="at-row">
-            <AtForm onSubmit={this.onSubmit.bind(this)} className="at-col">
+            <AtForm onSubmit={this.accountLogin.bind(this)} className="at-col">
               <AtInput
                 required
                 name="phone"
